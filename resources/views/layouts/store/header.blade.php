@@ -1,11 +1,7 @@
-<header class="lf">
+<header>
     <ul class="flex flex-row gap-3 m-4">
-        <li>
-            <a href="{{route('product')}}">Acceuil</a>
-        </li>
-        <li>
-            <a href="{{route('dashboard')}}">Mon compte</a>
-        </li>
-        <li>panier</li>
+        <li class="bg-blue-400 p-1 rounded-full p-5"><a href="{{route('product')}}">Accueil</a></li>
+        <li class="bg-blue-400 p-1 rounded-full p-5"><a href="{{route('dashboard')}}">Mon compte</a></li>
+        <li class="bg-blue-400 p-1 rounded-full p-5"><a href="">Panier</a></li>
     </ul>
 </header>

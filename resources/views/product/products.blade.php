@@ -1,12 +1,17 @@
 @extends('layouts.store')
 
 @section('content')
-<ul class="bg-red-300">
-    @foreach ($categories as $rowCategory)
-        <li>
-            <a href="">{{$rowCategory->name}}</a>
-        </li>
-    @endforeach
-</ul>
-<x-product-card :products="$products"/>
+    <ul class="m-4 flex flex-1 gap-4 justify-center">
+        @foreach ($categories as $category)
+            <li class="categories p-1 rounded-full p-5">
+                <button class="">
+                    <a href="{{route('product.category',$category->id)}}" class="italic">#{{$category->name}}</a>
+                </button>
+            </li>
+        @endforeach
+    </ul>
+    <x-product-card :products="$products"/>
+
+    {{-- Lien de pagination --}}
+    {{ $products->onEachSide(5)->links() }}
 @endsection
