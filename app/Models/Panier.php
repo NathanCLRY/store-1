@@ -11,10 +11,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Panier extends Model
 {
     use HasFactory;
-    
-    protected $fillable = ['user_id','commande_id','product_id','quantite'];
 
-     /**
+    protected $fillable = ['user_id', 'commande_id', 'product_id', 'quantite'];
+
+    /**
      * Get the user that owns the Commande
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -23,7 +23,7 @@ class Panier extends Model
     {
         return $this->belongsTo(User::class);
     }
-      /**
+    /**
      * Get the user that owns the Commande
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -32,16 +32,15 @@ class Panier extends Model
     {
         return $this->belongsTo(Commande::class);
     }
-      /**
+    /**
      * Get the user that owns the Commande
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    
 
-    // public function product() :HasOne
-    // {
-    //     return $this->hasOne(Product::class);
-    // }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
-

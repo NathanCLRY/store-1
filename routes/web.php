@@ -6,9 +6,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 
 //affichage des produit 
-Route::get('/', [ProductController::class, 'index'])->name('product') ;
-Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.detail') ;
-Route::get('/product/category/{id}', [ProductController::class, 'productByCategory'])->name('product.category') ;
+Route::get('/', [ProductController::class, 'index'])->name('product');
+Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.detail');
+Route::get('/product/category/{id}', [ProductController::class, 'productByCategory'])->name('product.category');
 
 
 //gestion du dashboard
@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/panier', [PanierController::class, 'index'])->name('panier.lister');
     Route::get('/panier/add/{product}', [PanierController::class, 'ajouter'])->name('panier.ajouter');
+    Route::get('/panier/moins/{panier}', [PanierController::class, 'moins'])->name('panier.moins');
+    Route::get('/panier/remove/{panier}', [PanierController::class, 'remove'])->name('panier.remove');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

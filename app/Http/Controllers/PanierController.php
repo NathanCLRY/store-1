@@ -10,9 +10,9 @@ class PanierController extends Controller
 {
     public function index()
     {
-        $panier = Panier::where('user_id', auth()->user()->id)
+        $paniers = Panier::where('user_id', auth()->user()->id)
             ->get();
-        return view('panier.liste', compact('panier'));
+        return view('panier.liste', compact('paniers'));
     }
     public function ajouter(Product $product)
     {
@@ -27,7 +27,7 @@ class PanierController extends Controller
         // if product exist update quantities
         if (isset($existProduct)) {
 
-            $existProduct->quantite = $existProduct->quantite + 1;
+            $existProduct->quantite += 1;
             $existProduct->save();
         } else {
 
@@ -36,9 +36,23 @@ class PanierController extends Controller
                 'product_id' => $product->id
             ]);
         }
+        return redirect()->route('panier.lister');
+    }
+    public function remove(Panier $panier)
+    {
+        $panier->delete();
+        return back();
+    }
+    public function moins(Panier $panier)
+    {
+        if ($panier->quantite == 1) {
+            $panier->delete();
+        } else {
+            $panier->quantite -= 1;
+            $panier->save();
+        }
 
-        // else add the product
-        return 'ajouter';
+        return back();
     }
     public function commander()
     {
