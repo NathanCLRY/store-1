@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/panier/add/{product}', [PanierController::class, 'ajouter'])->name('panier.ajouter');
     Route::get('/panier/moins/{panier}', [PanierController::class, 'moins'])->name('panier.moins');
     Route::get('/panier/remove/{panier}', [PanierController::class, 'remove'])->name('panier.remove');
+    Route::get('/product/favoris/{product}', [ProductController::class, 'favoris'])->name('product.favoris');
 });
 
 require __DIR__ . '/auth.php';

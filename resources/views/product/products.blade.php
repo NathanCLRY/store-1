@@ -10,7 +10,7 @@
             </li>
         @endforeach
     </ul>
-    <x-product-card :products="$products"/>
+    <x-product-card :products="$products" :favs="$favs" />
 
     {{-- Lien de pagination --}}
     {{ $products->onEachSide(5)->links() }}
