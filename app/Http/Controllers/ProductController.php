@@ -38,6 +38,7 @@ class ProductController extends Controller
                 ->get();
         } else {
             $fav = null;
+            $favs = null;
         }
         return view('product.show', compact('product', 'products', 'fav', 'favs'));
     }
