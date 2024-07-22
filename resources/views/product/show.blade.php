@@ -1,6 +1,7 @@
 @extends('layouts.store')
 
 @section('content')
+{{$product->isFavoris->where('user_id',auth()->user()->id)}}
 <div class="container">
     <div class="flex w-full transform text-left text-base transition md:my-8 md:max-w-2xl md:px-4 lg:max-w-4xl">
         <div class="relative flex w-full items-center overflow-hidden bg-white px-4 pb-8 pt-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8">

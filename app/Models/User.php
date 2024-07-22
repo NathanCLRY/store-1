@@ -5,6 +5,8 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use Filament\Panel;
+use App\Models\Favoris;
+use App\Models\Commande;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -51,16 +53,16 @@ class User extends Authenticatable implements FilamentUser
         ];
     }
 
-    public function canAccessPanel(Panel $panel): bool 
+    public function canAccessPanel(Panel $panel): bool
     {
-    if ($this->role === 'admin') {
-        return true;
-    }else{
-        
-        return false;
-    }
+        if ($this->role === 'admin') {
+            return true;
+        } else {
 
-    return true;
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -71,5 +73,15 @@ class User extends Authenticatable implements FilamentUser
     public function commande(): HasMany
     {
         return $this->hasMany(Commande::class);
+    }
+
+    /**
+     * Get all of the favoris for the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function favoris(): HasMany
+    {
+        return $this->hasMany(Favoris::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Panier;
+use App\Models\Favoris;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -43,5 +44,20 @@ class Product extends Model
     public function paniers(): BelongsTo
     {
         return $this->belongsTo(Panier::class);
+    }
+
+    /**
+     * Get all of the favoris for the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function favoris(): HasMany
+    {
+        return $this->hasMany(Favoris::class);
+    }
+
+    public function isFavoris()
+    {
+        return $this->hasMany(Favoris::class);
     }
 }

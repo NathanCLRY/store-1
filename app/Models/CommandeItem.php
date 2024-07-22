@@ -2,33 +2,35 @@
 
 namespace App\Models;
 
-use App\Models\User;
 use App\Models\Product;
+use App\Models\Commande;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Favoris extends Model
+class CommandeItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'product_id'];
+    protected $fillable = ['commande_id', 'product_id', 'quantite', 'price'];
 
     /**
-     * Get the user that owns the Favoris
+     * Get the Commande that owns the CommandeItem
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user(): BelongsTo
+    public function commande(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Commande::class);
     }
 
     /**
-     * Get the product that owns the Favoris
+     * Get the user that owns the Commande
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);

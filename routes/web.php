@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PanierController;
+use App\Http\Controllers\FavorisController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommandeController;
 
 //affichage des produit 
 Route::get('/', [ProductController::class, 'index'])->name('product');
@@ -32,4 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/product/favoris/{product}', [ProductController::class, 'favoris'])->name('product.favoris');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/favoris', [FavorisController::class, 'index'])->name('favoris.index');
+    Route::get('/commande/create', [CommandeController::class, 'create'])->name('commande.create');
+    Route::get('/commande', [CommandeController::class, 'index'])->name('commande.liste');
+});
 require __DIR__ . '/auth.php';

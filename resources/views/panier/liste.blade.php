@@ -78,9 +78,9 @@
                     <p class="text-end font-bold">$99.98</p>
                 </div>
                 <div class="flex gap-2">
-                    <button class="transition-colors text-sm bg-blue-600 hover:bg-blue-700 p-2 rounded-sm w-full text-white text-hover shadow-md">
+                    <a href="{{route('commande.create')}}" class="transition-colors text-sm bg-blue-600 hover:bg-blue-700 p-2 rounded-sm w-full text-white text-hover shadow-md text-center">
                             Commander  
-                    </button>
+                    </a>
                     <a href="{{route('product')}}" class="transition-colors text-sm bg-white border border-gray-600 p-2 rounded-sm w-full text-gray-700 text-hover shadow-md text-center">
                             Ajouter des produits
                     </a>
