@@ -6,6 +6,7 @@ use App\Models\Panier;
 use App\Models\Commande;
 use App\Models\CommandeItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 
 class CommandeController extends Controller
 {
@@ -50,8 +51,8 @@ class CommandeController extends Controller
         $commande->save();
 
         Panier::where('user_id', auth()->user()->id)->delete();
-        dd($commande);
-        return 'Commander';
+
+        return redirect($this->stripeCheckout($total, $commande->id));
     }
 
     public function index()
@@ -60,5 +61,36 @@ class CommandeController extends Controller
             ->orderBy('id', 'desc')
             ->get();
         return view('commande.liste', compact('commandes'));
+    }
+
+    public function stripeCheckout($total, $numero)
+    {
+        //Paramétrage de l'api
+        $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
+
+        //URL de confirmation de paiement
+        $redirectUrl = route('commande.liste') . '?session_id={CHECKOUT_SESSION_ID}';
+        //Création de la session de paiement stripe
+        $response =  $stripe->checkout->sessions->create([
+            'success_url' => $redirectUrl,
+            'payment_method_types' => ['link', 'card'],
+            'line_items' => [
+                [
+                    'price_data'  => [
+                        'product_data' => [
+                            'name' => $numero,
+                        ],
+                        'unit_amount'  => 100 * $total,
+                        'currency'     => 'EUR',
+                    ],
+                    'quantity'    => 1
+                ],
+            ],
+            'mode' => 'payment',
+            'allow_promotion_codes' => false
+        ]);
+
+        //Géneration de l'url de paiement
+        return $response['url'];
     }
 }
