@@ -13,6 +13,7 @@
         @forelse ($paniers as $panier)
             @php
                 $total += $panier->product->price * $panier->quantite;
+                $totalProduct = $panier->product->price * $panier->quantite;
                 $nbrArticle += $panier->quantite
             @endphp
             <!-- component -->

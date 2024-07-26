@@ -3,7 +3,7 @@
         <img src="https://shreethemes.in/cartzio/layouts/assets/images/shop/black-print-t-shirt.jpg" class="group-hover:scale-110 duration-500" alt="">
 
         <div class="absolute -bottom-20 group-hover:bottom-3 start-3 end-3 duration-500">
-            <a href="shop-cart.html" class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center bg-slate-900 text-white w-full rounded-md">Ajouter au panier</a>
+            <a href="{{route('panier.ajouter',$product)}}" class="py-2 px-5 inline-block font-semibold tracking-wide align-middle duration-500 text-base text-center bg-slate-900 text-white w-full rounded-md">Ajouter au panier</a>
         </div>
 
         <ul class="list-none absolute top-[10px] end-4 opacity-0 group-hover:opacity-100 duration-500 space-y-1">
@@ -18,7 +18,7 @@
     </div>
 
     <div class="mt-4">
-        <a href="product-detail-one.html" class="hover:text-orange-500 text-lg font-medium">{{$product->nom}}</a>
+        <a href="{{route('product.detail',$product)}}" class="hover:text-orange-500 text-lg font-medium">{{$product->nom}}</a>
         <div class="flex justify-between items-center mt-1">
             <p>16.00 €<del class="text-slate-400">{{$product->price}} €</del></p>
             <ul class="font-medium text-amber-400 list-none">

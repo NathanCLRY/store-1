@@ -12,7 +12,7 @@ class PanierController extends Controller
     {
         $paniers = Panier::where('user_id', auth()->user()->id)
             ->get();
-        return view('panier.liste', compact('paniers'));
+        return view('panier.lister', compact('paniers'));
     }
     public function ajouter(Product $product)
     {

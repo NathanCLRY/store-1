@@ -28,7 +28,7 @@ class ProductController extends Controller
     {
         $products = Product::where('category_id', $product->category_id)
             ->inRandomOrder()
-            ->limit(5)
+            ->limit(4)
             ->get();
         if (isset(auth()->user()->id)) {
             $fav = Favoris::where('user_id', '=', auth()->user()->id)
